@@ -28,7 +28,7 @@ const _ = cockpit.gettext;
 export class Application extends React.Component {
     constructor() {
         super();
-        this.state = { 
+        this.state = {
             hostname: _("Unknown"),
             program_list_raw: "",
             program_list: [],
@@ -42,25 +42,24 @@ export class Application extends React.Component {
         cockpit.user().done((user) => {
             // get a list of programs
             cockpit.spawn(["find", user.home + "/scripts", "-type", "f", "-executable"])
-            .stream((data) => {
-                this.setState((state) => ({
-                    program_list_raw: state.program_list_raw + data,
-                }));
-            })
-            .done(() => {
-                this.setState((state) => ({ 
-                    program_list: state.program_list_raw.split('\n').filter((value) => (value.length > 0)).map((value) => (
-                        {
-                            program: value,
-                            displayName: value.split("/").slice(-1)[0],
-                            isExecuting: false,
-                        }
-                    )),
-                }));
-            });
-        })
-
-        
+                    .stream((data) => {
+                        this.setState((state) => ({
+                            program_list_raw: state.program_list_raw + data,
+                        }));
+                    })
+                    .done(() => {
+                        this.setState((state) => ({
+                            program_list: state.program_list_raw.split('\n').filter((value) => (value.length > 0))
+                                    .map((value) => (
+                                        {
+                                            program: value,
+                                            displayName: value.split("/").slice(-1)[0],
+                                            isExecuting: false,
+                                        }
+                                    )),
+                        }));
+                    });
+        });
     }
 
     onExecutionStream = (executionObj, data) => {
@@ -109,9 +108,9 @@ export class Application extends React.Component {
             successful: null,
         };
         cockpit.spawn([programObj.program])
-        .stream(this.onExecutionStream.bind(this, newExecutionObj))
-        .done(this.onExecutionSucceed.bind(this, newExecutionObj))
-        .fail(this.onExecutionFailure.bind(this, newExecutionObj));
+                .stream(this.onExecutionStream.bind(this, newExecutionObj))
+                .done(this.onExecutionSucceed.bind(this, newExecutionObj))
+                .fail(this.onExecutionFailure.bind(this, newExecutionObj));
         return newExecutionObj;
     }
 
@@ -119,13 +118,14 @@ export class Application extends React.Component {
         // set the button state
         this.setState((state) => {
             var newExecutionObj = null;
-            state.program_list = state.program_list.map((obj) => {
-                if (obj.program == program) {
-                    obj.isExecuting = true;
-                    newExecutionObj = this.execute(obj);
-                }
-                return obj;
-            });
+            state.program_list = state.program_list
+                    .map((obj) => {
+                        if (obj.program == program) {
+                            obj.isExecuting = true;
+                            newExecutionObj = this.execute(obj);
+                        }
+                        return obj;
+                    });
             if (newExecutionObj != null)
                 state.execution_log.unshift(newExecutionObj);
         });
@@ -135,13 +135,13 @@ export class Application extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <h2>{ _("Cockpit 365 Click-to-Run") }</h2>
+                <h2>{_("Cockpit 365 Click-to-Run")}</h2>
                 <p>
-                    { cockpit.format(_("Running on $0"), this.state.hostname) }
+                    {cockpit.format(_("Running on $0"), this.state.hostname)}
                 </p>
-                <h3>{ _("Programs:") }</h3>
-                <ProgramList programs={this.state.program_list} clickAction={this.handleProgramButtonClick} />
-                <h3>{ _("Logs:") }</h3>
+                <h3>{_("Programs:")}</h3>
+                <ProgramList programs={this.state.program_list} onClick={this.handleProgramButtonClick} />
+                <h3>{_("Logs:")}</h3>
                 <ExecutionLog execution_list={this.state.execution_log} />
             </div>
         );

@@ -1,9 +1,9 @@
 {
-  "name": "cockpit-click-to-run",
+  "name": "click-to-run",
   "version": "0.1.0",
   "description": "Cockpit 365",
   "main": "index.js",
-  "repository": "git@github.com:cockpit/starter-kit.git",
+  "repository": "git@github.com:Jamesits-cockpit-click-to-run.git",
   "author": "",
   "license": "LGPL-2.1",
   "scripts": {

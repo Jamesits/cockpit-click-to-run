@@ -1,9 +1,8 @@
-import cockpit from 'cockpit';
 import React from 'react';
 import './app.scss';
 import { ExecutionLogItem } from './ExecutionLogItem.jsx';
 
-const _ = cockpit.gettext;
+// const _ = cockpit.gettext;
 
 export class ExecutionLog extends React.Component {
     render() {
