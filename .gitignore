@@ -3,6 +3,7 @@
 *.tar.gz
 *.rpm
 node_modules/
+node_modules.release/
 dist/
 /*.spec
 /.vagrant
