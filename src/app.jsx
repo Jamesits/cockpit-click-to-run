@@ -39,24 +39,28 @@ export class Application extends React.Component {
             this.setState({ hostname: content.trim() });
         });
 
-        // get a list of programs
-        cockpit.spawn(["find", "/root/testdir", "-type", "f", "-executable"])
-        .stream((data) => {
-            this.setState((state) => ({
-                program_list_raw: state.program_list_raw + data,
-            }));
+        cockpit.user().done((user) => {
+            // get a list of programs
+            cockpit.spawn(["find", user.home + "/scripts", "-type", "f", "-executable"])
+            .stream((data) => {
+                this.setState((state) => ({
+                    program_list_raw: state.program_list_raw + data,
+                }));
+            })
+            .done(() => {
+                this.setState((state) => ({ 
+                    program_list: state.program_list_raw.split('\n').filter((value) => (value.length > 0)).map((value) => (
+                        {
+                            program: value,
+                            displayName: value.split("/").slice(-1)[0],
+                            isExecuting: false,
+                        }
+                    )),
+                }));
+            });
         })
-        .done(() => {
-            this.setState((state) => ({ 
-                program_list: state.program_list_raw.split('\n').filter((value) => (value.length > 0)).map((value) => (
-                    {
-                        program: value,
-                        displayName: value.split("/").slice(-1)[0],
-                        isExecuting: false,
-                    }
-                )),
-            }));
-        });
+
+        
     }
 
     onExecutionStream = (executionObj, data) => {
