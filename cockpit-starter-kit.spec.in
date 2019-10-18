@@ -1,10 +1,10 @@
-Name: cockpit-starter-kit
+Name: cockpit-click-to-run
 Version: @VERSION@
 Release: 1%{?dist}
-Summary: Cockpit Starter Kit Example Module
+Summary: Cockpit 365
 License: LGPLv2+
 
-Source: cockpit-starter-kit-%{version}.tar.gz
+Source: cockpit-click-to-run-%{version}.tar.gz
 BuildArch: noarch
 BuildRequires:  libappstream-glib
 
@@ -13,7 +13,7 @@ Requires: cockpit-system
 %define debug_package %{nil}
 
 %description
-Cockpit Starter Kit Example Module
+Cockpit module to provide buttons for shell scripts
 
 %prep
 %setup -n cockpit-starter-kit
