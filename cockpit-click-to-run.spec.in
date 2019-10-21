@@ -6,7 +6,7 @@ License: LGPLv2+
 
 Source: cockpit-click-to-run-%{version}.tar.gz
 BuildArch: noarch
-BuildRequires:  libappstream-glib
+#BuildRequires:  libappstream-glib
 
 Requires: cockpit-system
 
@@ -16,7 +16,7 @@ Requires: cockpit-system
 Cockpit module to provide buttons for shell scripts
 
 %prep
-%setup -n cockpit-starter-kit
+%setup -n cockpit-click-to-run
 
 %install
 %make_install
