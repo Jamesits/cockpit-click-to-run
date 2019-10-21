@@ -20,7 +20,7 @@ Cockpit module to provide buttons for shell scripts
 
 %install
 %make_install
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*
+#appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*
 
 # drop source maps, they are large and just for debugging
 find %{buildroot}%{_datadir}/cockpit/ -name '*.map' | xargs rm --verbose
