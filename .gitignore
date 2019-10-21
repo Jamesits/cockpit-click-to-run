@@ -14,3 +14,4 @@ test/common/
 test/images/
 *.pot
 POTFILES*
+rpmbuild/
