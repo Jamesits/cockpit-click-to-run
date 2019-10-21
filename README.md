@@ -4,13 +4,14 @@ A simple dashboard to click and run executables and scripts.
 
 ### Installation
 
-Install dependencies:
+Install:
 
 ```shell
 yum install cockpit
+rpm -i https://github.com/Jamesits/cockpit-click-to-run/releases/download/v0.1.0/cockpit-click-to-run-1-1.el7.noarch.rpm
 ```
 
-Then go to [releases](https://github.com/Jamesits/cockpit-click-to-run/releases/latest) to get the latest package and then `rpm -i *.rpm` it.
+(URL is for demonstration; go to [releases](https://github.com/Jamesits/cockpit-click-to-run/releases/latest) to get the latest package!)
 
 Start cockpit service:
 
