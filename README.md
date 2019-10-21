@@ -27,6 +27,8 @@ systemctl restart firewalld
 
 ### Usage
 
+Launch the dashboard at `https://your-server-address:9090/click-to-run`. Login with your user credential.
+
 The dashboard scans all executable files in `~/scripts`. To start with an example:
 
 ```shell
